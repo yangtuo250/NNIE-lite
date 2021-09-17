@@ -103,9 +103,9 @@ void GeneralSeg::run(cv::Mat input_img, cv::Mat &clsIdxMask, cv::Mat &colorMask)
 
     parseTensor(logit, clsIdxMask, colorMask);
 
-#ifdef __DEBUG__
+// #ifdef __DEBUG__
     cv::imwrite("color_mask.png", colorMask);
-#endif
+// #endif
 
     free(in.im);
 
@@ -145,10 +145,10 @@ void GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
 
 int main()
 {
-    const std::string &pcModelPath = "./data/nnie_model/segmentation/ENet_cityscapes.wk";
+    const std::string &pcModelPath = "./data/nnie_model/segmentation/wood_defect.wk";
     GeneralSeg enet;
     enet.init(pcModelPath);
-    const std::string &pcSrcFile = "./data/nnie_image/cityscapes/lindau_000000_000019_leftImg8bit.png";
+    const std::string &pcSrcFile = "./data/nnie_image/wood_defect/1.png";
     cv::Mat clsMask;
     cv::Mat colorMask;
     enet.run(pcSrcFile, clsMask, colorMask);

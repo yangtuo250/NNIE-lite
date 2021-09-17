@@ -1,0 +1,10 @@
+/home/liuyk/data/dagm2007/raw_images/private/Class1/1000.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/100.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/101.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/102.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/103.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/104.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/105.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/106.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/107.png
+/home/liuyk/data/dagm2007/raw_images/private/Class1/108.png

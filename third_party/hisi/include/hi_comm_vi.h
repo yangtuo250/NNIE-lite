@@ -529,7 +529,7 @@ typedef struct {
 } tV59aTFy;
 
 typedef struct {
-    HI_U16  SFC     : 10;   /* RW; Range:[0, 1023];Format 10.0;the strength of spatial filter for NRC0 */
+    HI_U16  SFC     : 10;   /* RW; Range:[0, 999];Format 10.0;the strength of spatial filter for NRC0 */
     HI_U16  TFC     : 6;    /* RW; Range:[0, 63];Format 6.0;the strength of temporal filter for NRC0 */
     HI_U16  CSFS    : 14;   /* RW; Range:[0, 999];Format 10.0;the strength of spatial filter for NRC1 */
     HI_U16  CSFk    : 2;    /* RW; Range:[0, 3];Format 2.0;Not recommended for debugging */

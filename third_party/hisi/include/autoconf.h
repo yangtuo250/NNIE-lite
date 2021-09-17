@@ -2,7 +2,7 @@
  * Automatically generated C config: don't edit
  * Busybox version: 
  */
-#define AUTOCONF_TIMESTAMP "2019-08-02 18:01:01 CST"
+#define AUTOCONF_TIMESTAMP "2019-09-16 16:20:30 CST"
 
 
 /*

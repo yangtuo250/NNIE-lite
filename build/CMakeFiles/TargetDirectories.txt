@@ -1,0 +1,5 @@
+/home/liuyk/work/NNIE-lite/build/CMakeFiles/rebuild_cache.dir
+/home/liuyk/work/NNIE-lite/build/CMakeFiles/edit_cache.dir
+/home/liuyk/work/NNIE-lite/build/CMakeFiles/Seg_Exe.dir
+/home/liuyk/work/NNIE-lite/build/CMakeFiles/Cls_Exe.dir
+/home/liuyk/work/NNIE-lite/build/CMakeFiles/alg_Exe.dir

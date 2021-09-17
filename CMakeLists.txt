@@ -6,11 +6,11 @@ SET(CMAKE_CXX_STANDARD 11)
 ADD_DEFINITIONS(-D __DEBUG__)  # is Debug?
 
 # ------------------------------- FLAGS -----------------------------
-SET(CMAKE_C_COMPILER arm-himix200-linux-gcc)
-SET(CMAKE_CXX_COMPILER arm-himix200-linux-g++)
-SET(CMAKE_C_STRIP arm-himix200-linux-strip)
+SET(CMAKE_C_COMPILER aarch64-himix100-linux-gcc)
+SET(CMAKE_CXX_COMPILER aarch64-himix100-linux-g++)
+SET(CMAKE_C_STRIP aarch64-himix100-linux-strip)
 
-SET(CMAKE_C_FLAGS_PUBLIC "-mcpu=cortex-a7 -mfloat-abi=softfp -mfpu=neon-vfpv4 -ffunction-sections -mno-unaligned-access -fno-aggressive-loop-optimizations -mapcs-frame -rdynamic")
+SET(CMAKE_C_FLAGS_PUBLIC "-mcpu=cortex-a8 -mfloat-abi=softfp -mfpu=neon-vfpv4 -ffunction-sections -mno-unaligned-access -fno-aggressive-loop-optimizations -mapcs-frame -rdynamic")
 SET(CMAKE_C_FLAGS_DEBUG "-Wall -ggdb3 -DNM_DEBUG ${CMAKE_C_FLAGS_PUBLIC}")
 SET(CMAKE_C_FLAGS_RELEASE  "-Wall -O3  ${CMAKE_C_FLAGS_PUBLIC}")
 
