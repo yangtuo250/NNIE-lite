@@ -142,19 +142,6 @@ Cls_Exe/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/build
 .PHONY : Cls_Exe/fast
 
-#=============================================================================
-# Target rules for targets named alg_Exe
-
-# Build rule for target.
-alg_Exe: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 alg_Exe
-.PHONY : alg_Exe
-
-# fast build rule for target.
-alg_Exe/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/build
-.PHONY : alg_Exe/fast
-
 examples/GeneralCls.o: examples/GeneralCls.cpp.o
 .PHONY : examples/GeneralCls.o
 
@@ -203,30 +190,6 @@ examples/GeneralSeg.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/examples/GeneralSeg.cpp.s
 .PHONY : examples/GeneralSeg.cpp.s
 
-examples/yolo.o: examples/yolo.cpp.o
-.PHONY : examples/yolo.o
-
-# target to build an object file
-examples/yolo.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/examples/yolo.cpp.o
-.PHONY : examples/yolo.cpp.o
-
-examples/yolo.i: examples/yolo.cpp.i
-.PHONY : examples/yolo.i
-
-# target to preprocess a source file
-examples/yolo.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/examples/yolo.cpp.i
-.PHONY : examples/yolo.cpp.i
-
-examples/yolo.s: examples/yolo.cpp.s
-.PHONY : examples/yolo.s
-
-# target to generate assembly for a file
-examples/yolo.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/examples/yolo.cpp.s
-.PHONY : examples/yolo.cpp.s
-
 src/Net.o: src/Net.cpp.o
 .PHONY : src/Net.o
 
@@ -234,7 +197,6 @@ src/Net.o: src/Net.cpp.o
 src/Net.cpp.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/Net.cpp.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/Net.cpp.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/Net.cpp.o
 .PHONY : src/Net.cpp.o
 
 src/Net.i: src/Net.cpp.i
@@ -244,7 +206,6 @@ src/Net.i: src/Net.cpp.i
 src/Net.cpp.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/Net.cpp.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/Net.cpp.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/Net.cpp.i
 .PHONY : src/Net.cpp.i
 
 src/Net.s: src/Net.cpp.s
@@ -254,7 +215,6 @@ src/Net.s: src/Net.cpp.s
 src/Net.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/Net.cpp.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/Net.cpp.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/Net.cpp.s
 .PHONY : src/Net.cpp.s
 
 src/nnie_core.o: src/nnie_core.c.o
@@ -264,7 +224,6 @@ src/nnie_core.o: src/nnie_core.c.o
 src/nnie_core.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/nnie_core.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/nnie_core.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/nnie_core.c.o
 .PHONY : src/nnie_core.c.o
 
 src/nnie_core.i: src/nnie_core.c.i
@@ -274,7 +233,6 @@ src/nnie_core.i: src/nnie_core.c.i
 src/nnie_core.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/nnie_core.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/nnie_core.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/nnie_core.c.i
 .PHONY : src/nnie_core.c.i
 
 src/nnie_core.s: src/nnie_core.c.s
@@ -284,7 +242,6 @@ src/nnie_core.s: src/nnie_core.c.s
 src/nnie_core.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/nnie_core.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/nnie_core.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/nnie_core.c.s
 .PHONY : src/nnie_core.c.s
 
 src/sample_comm_nnie.o: src/sample_comm_nnie.c.o
@@ -294,7 +251,6 @@ src/sample_comm_nnie.o: src/sample_comm_nnie.c.o
 src/sample_comm_nnie.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/sample_comm_nnie.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/sample_comm_nnie.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/sample_comm_nnie.c.o
 .PHONY : src/sample_comm_nnie.c.o
 
 src/sample_comm_nnie.i: src/sample_comm_nnie.c.i
@@ -304,7 +260,6 @@ src/sample_comm_nnie.i: src/sample_comm_nnie.c.i
 src/sample_comm_nnie.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/sample_comm_nnie.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/sample_comm_nnie.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/sample_comm_nnie.c.i
 .PHONY : src/sample_comm_nnie.c.i
 
 src/sample_comm_nnie.s: src/sample_comm_nnie.c.s
@@ -314,7 +269,6 @@ src/sample_comm_nnie.s: src/sample_comm_nnie.c.s
 src/sample_comm_nnie.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/sample_comm_nnie.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/sample_comm_nnie.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/sample_comm_nnie.c.s
 .PHONY : src/sample_comm_nnie.c.s
 
 src/sample_comm_svp.o: src/sample_comm_svp.c.o
@@ -324,7 +278,6 @@ src/sample_comm_svp.o: src/sample_comm_svp.c.o
 src/sample_comm_svp.c.o:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/sample_comm_svp.c.o
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/sample_comm_svp.c.o
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/sample_comm_svp.c.o
 .PHONY : src/sample_comm_svp.c.o
 
 src/sample_comm_svp.i: src/sample_comm_svp.c.i
@@ -334,7 +287,6 @@ src/sample_comm_svp.i: src/sample_comm_svp.c.i
 src/sample_comm_svp.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/sample_comm_svp.c.i
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/sample_comm_svp.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/sample_comm_svp.c.i
 .PHONY : src/sample_comm_svp.c.i
 
 src/sample_comm_svp.s: src/sample_comm_svp.c.s
@@ -344,7 +296,6 @@ src/sample_comm_svp.s: src/sample_comm_svp.c.s
 src/sample_comm_svp.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Seg_Exe.dir/build.make CMakeFiles/Seg_Exe.dir/src/sample_comm_svp.c.s
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/src/sample_comm_svp.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/src/sample_comm_svp.c.s
 .PHONY : src/sample_comm_svp.c.s
 
 # Help Target
@@ -357,16 +308,12 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... Cls_Exe"
 	@echo "... Seg_Exe"
-	@echo "... alg_Exe"
 	@echo "... examples/GeneralCls.o"
 	@echo "... examples/GeneralCls.i"
 	@echo "... examples/GeneralCls.s"
 	@echo "... examples/GeneralSeg.o"
 	@echo "... examples/GeneralSeg.i"
 	@echo "... examples/GeneralSeg.s"
-	@echo "... examples/yolo.o"
-	@echo "... examples/yolo.i"
-	@echo "... examples/yolo.s"
 	@echo "... src/Net.o"
 	@echo "... src/Net.i"
 	@echo "... src/Net.s"

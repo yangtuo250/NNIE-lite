@@ -65,7 +65,6 @@ CMAKE_BINARY_DIR = /home/liuyk/work/NNIE-lite/build
 # The main recursive "all" target.
 all: CMakeFiles/Seg_Exe.dir/all
 all: CMakeFiles/Cls_Exe.dir/all
-all: CMakeFiles/alg_Exe.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -75,7 +74,6 @@ preinstall:
 # The main recursive "clean" target.
 clean: CMakeFiles/Seg_Exe.dir/clean
 clean: CMakeFiles/Cls_Exe.dir/clean
-clean: CMakeFiles/alg_Exe.dir/clean
 .PHONY : clean
 
 #=============================================================================
@@ -129,32 +127,6 @@ Cls_Exe: CMakeFiles/Cls_Exe.dir/rule
 CMakeFiles/Cls_Exe.dir/clean:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Cls_Exe.dir/build.make CMakeFiles/Cls_Exe.dir/clean
 .PHONY : CMakeFiles/Cls_Exe.dir/clean
-
-#=============================================================================
-# Target rules for target CMakeFiles/alg_Exe.dir
-
-# All Build rule for target.
-CMakeFiles/alg_Exe.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/liuyk/work/NNIE-lite/build/CMakeFiles --progress-num=13,14,15,16,17,18 "Built target alg_Exe"
-.PHONY : CMakeFiles/alg_Exe.dir/all
-
-# Build rule for subdir invocation for target.
-CMakeFiles/alg_Exe.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/liuyk/work/NNIE-lite/build/CMakeFiles 6
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/alg_Exe.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/liuyk/work/NNIE-lite/build/CMakeFiles 0
-.PHONY : CMakeFiles/alg_Exe.dir/rule
-
-# Convenience name for target.
-alg_Exe: CMakeFiles/alg_Exe.dir/rule
-.PHONY : alg_Exe
-
-# clean rule for target.
-CMakeFiles/alg_Exe.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/alg_Exe.dir/build.make CMakeFiles/alg_Exe.dir/clean
-.PHONY : CMakeFiles/alg_Exe.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

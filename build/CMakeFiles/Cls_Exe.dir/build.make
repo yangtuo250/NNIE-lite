@@ -156,8 +156,6 @@ Cls_Exe_EXTERNAL_OBJECTS =
 ../release/Cls_Exe: CMakeFiles/Cls_Exe.dir/src/sample_comm_svp.c.o
 ../release/Cls_Exe: CMakeFiles/Cls_Exe.dir/examples/GeneralCls.cpp.o
 ../release/Cls_Exe: CMakeFiles/Cls_Exe.dir/build.make
-../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/liblibjpeg.a
-../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/liblibpng.a
 ../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_core.so
 ../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_core.so.3.4
 ../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_core.so.3.4.1
@@ -179,7 +177,6 @@ Cls_Exe_EXTERNAL_OBJECTS =
 ../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_video.so
 ../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_video.so.3.4
 ../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_video.so.3.4.1
-../release/Cls_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libzlib.a
 ../release/Cls_Exe: CMakeFiles/Cls_Exe.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/liuyk/work/NNIE-lite/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../release/Cls_Exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Cls_Exe.dir/link.txt --verbose=$(VERBOSE)

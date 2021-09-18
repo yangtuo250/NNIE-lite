@@ -8,6 +8,7 @@
 		"istream": "cpp",
 		"functional": "cpp",
 		"utility": "cpp",
-		"tuple": "cpp"
+		"tuple": "cpp",
+		"iostream": "cpp"
 	}
 }

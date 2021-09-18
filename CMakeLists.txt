@@ -41,9 +41,9 @@ LINK_DIRECTORIES( ${OPENCV_LIB_DIR} ${HI_LIB_DIR})
 FILE(GLOB SRC "src/*.cpp" "src/*c")
 SET(NET_SRC ./src/Net.cpp)
 
-# For YOLO
-ADD_EXECUTABLE(alg_Exe ${SRC} examples/yolo.cpp)
-TARGET_LINK_LIBRARIES(alg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+# # For YOLO
+# ADD_EXECUTABLE(alg_Exe ${SRC} examples/yolo.cpp)
+# TARGET_LINK_LIBRARIES(alg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
 
 
 # For MNIST

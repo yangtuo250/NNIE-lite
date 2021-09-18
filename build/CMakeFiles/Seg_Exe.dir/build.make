@@ -156,8 +156,6 @@ Seg_Exe_EXTERNAL_OBJECTS =
 ../release/Seg_Exe: CMakeFiles/Seg_Exe.dir/src/sample_comm_svp.c.o
 ../release/Seg_Exe: CMakeFiles/Seg_Exe.dir/examples/GeneralSeg.cpp.o
 ../release/Seg_Exe: CMakeFiles/Seg_Exe.dir/build.make
-../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/liblibjpeg.a
-../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/liblibpng.a
 ../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_core.so
 ../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_core.so.3.4
 ../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_core.so.3.4.1
@@ -179,7 +177,6 @@ Seg_Exe_EXTERNAL_OBJECTS =
 ../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_video.so
 ../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_video.so.3.4
 ../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libopencv_video.so.3.4.1
-../release/Seg_Exe: .././third_party/opencv-3.4.1/install_hisi/lib/libzlib.a
 ../release/Seg_Exe: CMakeFiles/Seg_Exe.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/liuyk/work/NNIE-lite/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable ../release/Seg_Exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Seg_Exe.dir/link.txt --verbose=$(VERBOSE)

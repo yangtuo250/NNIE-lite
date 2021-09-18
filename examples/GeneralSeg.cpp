@@ -14,7 +14,7 @@ GeneralSeg::GeneralSeg(const std::string &modelPath)
     params.resizedHeight = 512;
     params.resizedWidth = 1024;
     params.inputC = 3;
-    params.classNum = 33;
+    params.classNum = 4;
 
     if (!validateGparams(params))
     {
@@ -31,7 +31,7 @@ void GeneralSeg::init(const std::string &modelPath)
     params.resizedHeight = 512;
     params.resizedWidth = 1024;
     params.inputC = 3;
-    params.classNum = 33;
+    params.classNum = 4;
 
     if (!validateGparams(params))
     {
@@ -75,6 +75,7 @@ GeneralSeg::~GeneralSeg()
 void GeneralSeg::run(const std::string &imgPath, cv::Mat &clsIdxMask, cv::Mat &colorMask)
 {
     cv::Mat im = params.inputC == 1 ? cv::imread(imgPath, 0): cv::imread(imgPath);
+    std::cout << imgPath << " : (" << im.rows << ", " << im.cols << ")" << std::endl;
     run(im, clsIdxMask, colorMask);
 }
 
@@ -145,10 +146,10 @@ void GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
 
 int main()
 {
-    const std::string &pcModelPath = "./data/nnie_model/segmentation/wood_defect.wk";
+    const std::string &pcModelPath = "/root/NNIE-lite/data/nnie_model/segmentation/wood_defect.wk";
     GeneralSeg enet;
     enet.init(pcModelPath);
-    const std::string &pcSrcFile = "./data/nnie_image/wood_defect/1.png";
+    const std::string &pcSrcFile = "/root/NNIE-lite/data/nnie_image/wood_defect/1.png";
     cv::Mat clsMask;
     cv::Mat colorMask;
     enet.run(pcSrcFile, clsMask, colorMask);
