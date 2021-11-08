@@ -3,7 +3,7 @@ project(NNIE-lite)
 
 SET(CMAKE_CXX_STANDARD 11)
 
-ADD_DEFINITIONS(-D __DEBUG__)  # is Debug?
+OPTION(DEBUG "debug mode, binary executable compiled, not shared library" OFF)
 
 # ------------------------------- FLAGS -----------------------------
 SET(CMAKE_C_COMPILER aarch64-himix100-linux-gcc)
@@ -16,7 +16,7 @@ SET(CMAKE_C_FLAGS_RELEASE  "-Wall -O3  ${CMAKE_C_FLAGS_PUBLIC}")
 
 
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../release)
-SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ../release)
+SET(CMAKE_LIBRARY_OUTPUT_DIRECTORY ../release/lib)
 
 # --------------------------------
 SET(THIRD_PART third_party)
@@ -42,15 +42,21 @@ FILE(GLOB SRC "src/*.cpp" "src/*c")
 SET(NET_SRC ./src/Net.cpp)
 
 # # For YOLO
-# ADD_EXECUTABLE(alg_Exe ${SRC} examples/yolo.cpp)
+# ADD_EXECUTABLE(alg_Exe ${SRC} src/yolo.cpp)
 # TARGET_LINK_LIBRARIES(alg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
 
 
 # For MNIST
-ADD_EXECUTABLE(Cls_Exe ${SRC} ./examples/GeneralCls.h ./examples/GeneralCls.cpp)
+ADD_EXECUTABLE(Cls_Exe ${SRC} ./inc/GeneralCls.h ./src/GeneralCls.cpp)
 TARGET_LINK_LIBRARIES(Cls_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
 
 
 # For ENet
-ADD_EXECUTABLE(Seg_Exe ${SRC} ./examples/GeneralSeg.h ./examples/GeneralSeg.cpp)
-TARGET_LINK_LIBRARIES(Seg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+IF(DEBUG)
+  ADD_DEFINITIONS(-D __DEBUG__)
+  ADD_EXECUTABLE(Seg_Exe ${SRC} ./inc/GeneralSeg.h ./src/GeneralSeg.cpp)
+  TARGET_LINK_LIBRARIES(Seg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+ELSE()
+  ADD_LIBRARY(libseg SHARED ${SRC} ./inc/GeneralSeg.h ./src/GeneralSeg.cpp)
+  TARGET_LINK_LIBRARIES(libseg ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+ENDIF()
