@@ -66,8 +66,8 @@ void GeneralSeg::run(std::string imgPath, cv::Mat &clsIdxMask, cv::Mat &colorMas
     std::cout << imgPath << " : (" << im.rows << ", " << im.cols << ")" << std::endl;
     bool is_none_background_exist = run(im, clsIdxMask, colorMask, threshold);
     std::cout << "None background detected: " << is_none_background_exist << std::endl;
-    const std::string outputImage = imgPath + "_result.png";
-    cv::imwrite(outputImage, colorMask);
+    // const std::string outputImage = imgPath + "_result.png";
+    // cv::imwrite(outputImage, colorMask);
 }
 
 bool GeneralSeg::run(cv::Mat input_img, cv::Mat &clsIdxMask, cv::Mat &colorMask, float threshold)
@@ -156,20 +156,34 @@ bool GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
 
 int main(int argc, char *argv[])
 {
-    if (4 != argc) {
-        std::cerr << "Usage: $0 model_path threshold img_path" << std::endl;
-        return -1;
-    }
+    // if (4 != argc) {
+    //     std::cerr << "Usage: $0 model_path threshold img_path" << std::endl;
+    //     return -1;
+    // }
 
-    std::string ModelPath, imgFile;
-    std::string;
-    float threshold;
-    std::cin >> ModelPath >> threshold >> imgFile;
+    std::string ModelPath = "/root/NNIE-lite/data/nnie_model/segmentation/wood_defect2.wk";
+    // std::string imgFile = "/root/data/wd/Image_20211022153918349.png";
+    // std::string imgFile;
+    float threshold = 0.999;
+    std::cout << ModelPath << std::endl;
+    std::cout << threshold << std::endl;
 
     GeneralSeg enet;
     enet.init(ModelPath);
     cv::Mat clsMask;
     cv::Mat colorMask;
-    enet.run(imgFile, clsMask, colorMask);
+    std::vector<cv::String> filenames;
+    cv::String folder = "/root/data/wd";
+    cv::String postfix = "_result.png";
+    cv::glob(folder, filenames);
+    for (size_t i = 0; i < filenames.size(); i++) {
+        std::cout << filenames[i] << std::endl;
+        cv::Mat src = cv::imread(filenames[i]);
+        if (!src.data) {
+            std::cerr << "Error Reading file " << filenames[i] << std::endl;
+        }
+        enet.run(src, clsMask, colorMask, threshold);
+        cv::imwrite(filenames[i]+postfix, colorMask);
+    }
 }
 #endif
