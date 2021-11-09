@@ -133,15 +133,16 @@ bool GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
                     max = logits[c];
                 }
             }
-#ifdef __DEBUG__
             if (maxIdx != 0) {
+                is_none_backgound_exist = true;
+#ifdef __DEBUG__
                 for (int c = 0; c < params.classNum; c++) {
                     std::cout << c << ": " << logits[c] << " ";
                 }
                 std::cout << maxIdx;
                 std::cout << std::endl;
-            }
 #endif
+            }
             clsIdxMask.at<uchar>(i, j) = maxIdx;
             colorMask.at<cv::Vec3b>(i, j) = colorMap[maxIdx];
         }
@@ -183,7 +184,7 @@ int main(int argc, char *argv[])
             std::cerr << "Error Reading file " << filenames[i] << std::endl;
         }
         enet.run(src, clsMask, colorMask, threshold);
-        cv::imwrite(filenames[i]+postfix, colorMask);
+        cv::imwrite(filenames[i] + postfix, colorMask);
     }
 }
 #endif
