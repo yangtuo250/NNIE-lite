@@ -105,6 +105,7 @@ bool GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
 {
     bool is_none_backgound_exist = false;
     float *res = outTensor.data;
+#pragma omp parallel for
     for (int i = 0; i < params.resizedHeight; ++i) {
         for (int j = 0; j < params.resizedWidth; ++j) {
             float max = 0.0;

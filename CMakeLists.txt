@@ -2,17 +2,23 @@ cmake_minimum_required(VERSION 3.6)
 project(NNIE-lite)
 
 SET(CMAKE_CXX_STANDARD 11)
-
-OPTION(DEBUG "debug mode, binary executable compiled, not shared library" OFF)
+IF(NOT CMAKE_BUILD_TYPE)
+  SET(CMAKE_BUILD_TYPE DEBUG)
+ENDIF()
+MESSAGE(STATUS "CMake build type: ${CMAKE_BUILD_TYPE}")
 
 # ------------------------------- FLAGS -----------------------------
 SET(CMAKE_C_COMPILER aarch64-himix100-linux-gcc)
 SET(CMAKE_CXX_COMPILER aarch64-himix100-linux-g++)
 SET(CMAKE_C_STRIP aarch64-himix100-linux-strip)
 
-SET(CMAKE_C_FLAGS_PUBLIC "-mcpu=cortex-a8 -mfloat-abi=softfp -mfpu=neon-vfpv4 -ffunction-sections -mno-unaligned-access -fno-aggressive-loop-optimizations -mapcs-frame -rdynamic")
+# SET(CMAKE_C_FLAGS_PUBLIC "-mcpu=cortex-a8 -mfloat-abi=softfp -mfpu=neon-vfpv4 -ffunction-sections -mno-unaligned-access -fno-aggressive-loop-optimizations -mapcs-frame -rdynamic -fopenmp")
+SET(CMAKE_C_FLAGS_PUBLIC "-ffunction-sections -fno-aggressive-loop-optimizations -rdynamic -fopenmp")
 SET(CMAKE_C_FLAGS_DEBUG "-Wall -ggdb3 -DNM_DEBUG ${CMAKE_C_FLAGS_PUBLIC}")
 SET(CMAKE_C_FLAGS_RELEASE  "-Wall -O3  ${CMAKE_C_FLAGS_PUBLIC}")
+SET(CMAKE_CXX_FLAGS_PUBLIC ${CMAKE_C_FLAGS_PUBLIC})
+SET(CMAKE_CXX_FLAGS_DEBUG ${CMAKE_C_FLAGS_DEBUG})
+SET(CMAKE_CXX_FLAGS_RELEASE ${CMAKE_C_FLAGS_RELEASE})
 
 
 SET(CMAKE_RUNTIME_OUTPUT_DIRECTORY ../release)
@@ -56,7 +62,7 @@ TARGET_LINK_LIBRARIES(Cls_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm 
 
 
 # For ENet
-IF(DEBUG)
+IF(CMAKE_BUILD_TYPE STREQUAL DEBUG)
   ADD_DEFINITIONS(-D __DEBUG__)
   ADD_EXECUTABLE(Seg_Exe ${SRC} ./inc/GeneralSeg.h ./src/GeneralSeg.cpp)
   TARGET_LINK_LIBRARIES(Seg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
