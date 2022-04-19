@@ -12,7 +12,7 @@ GeneralSeg::GeneralSeg(std::string modelPath)
     params.resizedHeight = 1024;
     params.resizedWidth = 1024;
     params.inputC = 3;
-    params.classNum = 3;
+    params.classNum = 5;
 
     if (!validateGparams(params)) {
         perror("[ERROR] Check your gparams !\n\n");
@@ -28,7 +28,7 @@ void GeneralSeg::init(std::string modelPath)
     params.resizedHeight = 1024;
     params.resizedWidth = 1024;
     params.inputC = 3;
-    params.classNum = 3;
+    params.classNum = 5;
 
     if (!validateGparams(params)) {
         perror("[ERROR] Check your gparams !\n\n");
@@ -92,6 +92,8 @@ bool GeneralSeg::run(cv::Mat input_img, cv::Mat &clsIdxMask, cv::Mat &colorMask,
 
     clsIdxMask = cv::Mat::zeros(params.resizedHeight, params.resizedWidth, CV_8UC1);
     colorMask = cv::Mat::zeros(params.resizedHeight, params.resizedWidth, CV_8UC3);
+    // clsIdxMask = cv::Mat::ones(params.resizedHeight, params.resizedWidth, CV_8UC1) * 4;
+    // colorMask = cv::Mat(params.resizedHeight, params.resizedWidth, CV_8UC3, cv::Scalar(4, 4, 4));
 
     bool is_none_background_exist = false;
     is_none_background_exist = parseTensor(logit, clsIdxMask, colorMask, threshold);
@@ -105,7 +107,7 @@ bool GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
 {
     bool is_none_backgound_exist = false;
     float *res = outTensor.data;
-#pragma omp parallel for
+    #pragma omp parallel for
     for (int i = 0; i < params.resizedHeight; ++i) {
         for (int j = 0; j < params.resizedWidth; ++j) {
             float max = 0.0;
@@ -130,11 +132,12 @@ bool GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
             Softmax(logits);
             for (int c = 0; c < params.classNum; c++) {
                 if (logits[c] > max & logits[c] > threshold) {
+                    // if (logits[c] > max) {
                     maxIdx = c;
                     max = logits[c];
                 }
             }
-            if (maxIdx != 0) {
+            if ((maxIdx != 0) & (maxIdx != 4)) {
                 is_none_backgound_exist = true;
 #ifdef __DEBUG__
                 for (int c = 0; c < params.classNum; c++) {
@@ -143,9 +146,9 @@ bool GeneralSeg::parseTensor(nnie::Mat outTensor, cv::Mat clsIdxMask, cv::Mat &c
                 std::cout << maxIdx;
                 std::cout << std::endl;
 #endif
+                clsIdxMask.at<uchar>(i, j) = maxIdx;
+                colorMask.at<cv::Vec3b>(i, j) = colorMap[maxIdx];
             }
-            clsIdxMask.at<uchar>(i, j) = maxIdx;
-            colorMask.at<cv::Vec3b>(i, j) = colorMap[maxIdx];
         }
     }
 
@@ -163,7 +166,7 @@ int main(int argc, char *argv[])
     //     return -1;
     // }
 
-    std::string ModelPath = "/root/NNIE-lite/data/nnie_model/segmentation/wood_defect2.wk";
+    std::string ModelPath = "/root/NNIE-lite/data/nnie_model/segmentation/tile_defect.wk";
     // std::string imgFile = "/root/data/wd/Image_20211022153918349.png";
     // std::string imgFile;
     float threshold = 0.999;
@@ -175,7 +178,7 @@ int main(int argc, char *argv[])
     cv::Mat clsMask;
     cv::Mat colorMask;
     std::vector<cv::String> filenames;
-    cv::String folder = "/root/data/wd";
+    cv::String folder = "/root/data/tile";
     cv::String postfix = "_result.png";
     cv::glob(folder, filenames);
     for (size_t i = 0; i < filenames.size(); i++) {
