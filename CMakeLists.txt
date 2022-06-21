@@ -45,29 +45,35 @@ INCLUDE_DIRECTORIES(inc  ${OPENCV_INCLUDE} ${HI_INCLUDE})
 LINK_DIRECTORIES( ${OPENCV_LIB_DIR} ${HI_LIB_DIR})
 
 FILE(GLOB SRC "src/*.cpp" "src/*c")
-GET_FILENAME_COMPONENT(cls_cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/GeneralCls.cpp ABSOLUTE)
-GET_FILENAME_COMPONENT(seg_cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/GeneralSeg.cpp ABSOLUTE)
-GET_FILENAME_COMPONENT(yolo_cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/yolo.cpp ABSOLUTE)
+# GET_FILENAME_COMPONENT(cls_cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/GeneralCls.cpp ABSOLUTE)
+# GET_FILENAME_COMPONENT(seg_cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/GeneralSeg.cpp ABSOLUTE)
+GET_FILENAME_COMPONENT(yolo_cpp ${CMAKE_CURRENT_SOURCE_DIR}/src/yolov5.cpp ABSOLUTE)
 LIST(REMOVE_ITEM SRC ${cls_cpp} ${seg_cpp} ${yolo_cpp}) 
 MESSAGE(STATUS ${SRC})
-SET(NET_SRC ./src/Net.cpp)
+# SET(NET_SRC ./src/Net.cpp)
 
 # # For YOLO
-# ADD_EXECUTABLE(alg_Exe ${SRC} src/yolo.cpp)
-# TARGET_LINK_LIBRARIES(alg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
-
-
-# For MNIST
-ADD_EXECUTABLE(Cls_Exe ${SRC} ./inc/GeneralCls.h ./src/GeneralCls.cpp)
-TARGET_LINK_LIBRARIES(Cls_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
-
-
-# For ENet
 IF(CMAKE_BUILD_TYPE STREQUAL DEBUG)
   ADD_DEFINITIONS(-D __DEBUG__)
-  ADD_EXECUTABLE(Seg_Exe ${SRC} ./inc/GeneralSeg.h ./src/GeneralSeg.cpp)
-  TARGET_LINK_LIBRARIES(Seg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+  ADD_EXECUTABLE(yolov5 ${SRC} ${yolo_cpp})
+  TARGET_LINK_LIBRARIES(yolov5  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
 ELSE()
-  ADD_LIBRARY(seg SHARED ${SRC} ./inc/GeneralSeg.h ./src/GeneralSeg.cpp)
-  TARGET_LINK_LIBRARIES(seg ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+  ADD_LIBRARY(yolov5 SHARED ${SRC} ${yolo_cpp})
+  TARGET_LINK_LIBRARIES(yolov5 ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
 ENDIF()
+
+
+# # For MNIST
+# ADD_EXECUTABLE(Cls_Exe ${SRC} ./inc/GeneralCls.h ./src/GeneralCls.cpp)
+# TARGET_LINK_LIBRARIES(Cls_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+
+
+# # For ENet
+# IF(CMAKE_BUILD_TYPE STREQUAL DEBUG)
+#   ADD_DEFINITIONS(-D __DEBUG__)
+#   ADD_EXECUTABLE(Seg_Exe ${SRC} ./inc/GeneralSeg.h ./src/GeneralSeg.cpp)
+#   TARGET_LINK_LIBRARIES(Seg_Exe  ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+# ELSE()
+#   ADD_LIBRARY(seg SHARED ${SRC} ./inc/GeneralSeg.h ./src/GeneralSeg.cpp)
+#   TARGET_LINK_LIBRARIES(seg ${HI_LIBS} ${OPENCV_LIBS} -lstdc++ -lpthread -lm -ldl )
+# ENDIF()
