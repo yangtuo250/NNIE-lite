@@ -38,33 +38,36 @@ void qsort_descent_inplace(std::vector<Object>& objects)
 void yolov5_generate_proposals(Tensor feature, const std::vector<cv::Size2f>& anchor, int stride, float prob_threshold,
                                std::vector<Object>& objects)
 {
-    int num_class = feature.height - 5;
-    int anchor_nums = feature.channel;
-    int map_w = sqrt(feature.width);
+    int num_class = feature.channel / anchor.size() - 5;
+#ifdef __DEBUG__
+    std::cout << "stride: " << stride << " feature height: " << feature.height << " width: " << feature.width
+              << " channel: " << feature.channel << " num_class: " << num_class << std::endl;
+#endif
 
-    for (int anchor_index = 0; anchor_index < anchor_nums; ++anchor_index) {
-        int anchor_stride = anchor_index * feature.width * feature.height;
+    for (int anchor_index = 0; anchor_index < anchor.size(); ++anchor_index) {
+        int anchor_stride = anchor_index * (5 + num_class) * feature.width * feature.height;
         float anchor_w = anchor[anchor_index].width;
         float anchor_h = anchor[anchor_index].height;
 
-        for (int num_grid = 0; num_grid < feature.width; ++num_grid) {
-            int y = num_grid / map_w;
-            int x = num_grid % map_w;
+        for (int num_grid = 0; num_grid < feature.width * feature.height; ++num_grid) {
+            int y = num_grid / feature.width;
+            int x = num_grid % feature.width;
 
-            float confidence = feature.data[anchor_stride + 4 * feature.width + num_grid];
+            float confidence = feature.data[anchor_stride + 4 * feature.width * feature.height + num_grid];
             confidence = sigmoid(confidence);
 
             if (confidence > prob_threshold) {
-                for (int class_index = 5; class_index < feature.height; ++class_index) {
-                    float class_confidence = feature.data[anchor_stride + class_index * feature.width + num_grid];
+                for (int class_index = 5; class_index < feature.channel / anchor.size(); ++class_index) {
+                    float class_confidence =
+                        feature.data[anchor_stride + class_index * feature.width * feature.height + num_grid];
                     class_confidence = sigmoid(class_confidence) * confidence;
 
                     if (class_confidence > prob_threshold) {
                         // printf("confidence %f\n", class_confidence);
-                        float dx = feature.data[anchor_stride + 0 * feature.width + num_grid];
-                        float dy = feature.data[anchor_stride + 1 * feature.width + num_grid];
-                        float dw = feature.data[anchor_stride + 2 * feature.width + num_grid];
-                        float dh = feature.data[anchor_stride + 3 * feature.width + num_grid];
+                        float dx = feature.data[anchor_stride + 0 * feature.width * feature.height + num_grid];
+                        float dy = feature.data[anchor_stride + 1 * feature.width * feature.height + num_grid];
+                        float dw = feature.data[anchor_stride + 2 * feature.width * feature.height + num_grid];
+                        float dh = feature.data[anchor_stride + 3 * feature.width * feature.height + num_grid];
 
                         dx = sigmoid(dx);
                         dy = sigmoid(dy);

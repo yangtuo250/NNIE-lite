@@ -1,29 +1,10 @@
-#include <dirent.h>
-#include <fcntl.h>
-#include <pthread.h>
-#include <signal.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <sys/ioctl.h>
-#include <sys/stat.h>
-#include <sys/time.h>
-#include <sys/types.h>
-#include <unistd.h>
-
-#include <vector>
-
-#include "Tensor.h"
-#include "ins_nnie_interface.h"
-#include "opencv2/opencv.hpp"
-#include "util.h"
-#include "yolo_post.h"
+#include "yolov5.h"
 /******************************************************************************
  * function : show usage
  ******************************************************************************/
 typedef unsigned char U_CHAR;
 
-void yolov5DetectDemo(NNIE &yolov5, cv::Mat &inference_img, std::vector<Object> &objects, float conf_threshold,
+void yolov5Detect(NNIE &yolov5, cv::Mat &inference_img, std::vector<Object> &objects, float conf_threshold,
                       float nms_threshold)
 {
     struct timeval tv1;
@@ -112,11 +93,11 @@ void yolov5DetectDemo(NNIE &yolov5, cv::Mat &inference_img, std::vector<Object> 
         objects[i].bbox.height = y1 - y0;
     }
 
+#ifdef __DEBUG__
     std::cout << "objects: " << objects.size() << std::endl;
     std::cout << "drawing" << std::endl;
     draw_objects(inference_img, objects);
 
-#ifdef __DEBUG__
     t1 = tv2.tv_sec - tv1.tv_sec;
     t2 = tv2.tv_usec - tv1.tv_usec;
     time_run = (long)(t1 * 1000 + t2 / 1000);
@@ -152,7 +133,7 @@ int main(int argc, char *argv[])
         resize(orig_img, img, cv::Size(1024, 1024));
         // cv::cvtColor(img, img, cv::COLOR_BGR2RGB);
         printf("yolov5 start\n");
-        yolov5DetectDemo(yolov5, img, objects, 0.95, 0.01);
+        yolov5Detect(yolov5, img, objects, 0.3, 0.01);
         printf("yolov5 finish\n");
         cv::imwrite(filenames[i] + postfix, img);
     }
